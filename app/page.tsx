@@ -13,11 +13,11 @@ export default function Page() {
     <div className="flex max-h-screen flex-col items-center justify-center p-24 gap-2">
       <Item variant={"outline"} className="w-full">
         <ItemContent>
-          <ItemTitle>Data Refetch</ItemTitle>
+          <ItemTitle>Context Demo</ItemTitle>
         </ItemContent>
         <ItemActions>
           <Button asChild>
-            <Link href={"/data-refetch"}>Go to demo</Link>
+            <Link href={"/context-demo"}>Go to demo</Link>
           </Button>
         </ItemActions>
       </Item>

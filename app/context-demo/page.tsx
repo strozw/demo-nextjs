@@ -5,6 +5,7 @@ import { Spinner } from "@/components/ui/spinner";
 import { connection } from "next/server";
 
 export default async function Page() {
+  // @see {@url https://nextjs.org/docs/app/api-reference/functions/connection}
   await connection();
 
   return (
