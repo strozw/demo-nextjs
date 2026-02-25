@@ -39,13 +39,7 @@ export function useDemoData() {
 }
 
 export function useRefetchDemoData() {
-  const refetchAction = useDemoContext().refetchDataAction;
-
-  return () => {
-    startTransition(() => {
-      refetchAction();
-    });
-  };
+  return useDemoContext().refetchDataAction;
 }
 
 export function useIsRefetching() {
