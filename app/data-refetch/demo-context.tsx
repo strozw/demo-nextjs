@@ -9,9 +9,11 @@ import {
   useTransition,
 } from "react";
 
+type DemoData = number | Promise<number>;
+
 export const DemoContext = createContext<
   | {
-      data: number | Promise<number>;
+      data: DemoData;
       refetchDataAction: () => void;
       isRefetching: boolean;
     }
@@ -56,12 +58,10 @@ export function DemoContextProvider({
   refetchDataAction,
 }: {
   children: ReactNode;
-  initialDataPromise: Promise<number>;
-  refetchDataAction: () => Promise<number>;
+  initialDataPromise: DemoData;
+  refetchDataAction: () => DemoData;
 }) {
-  const [data, setDataPromise] = useState<Promise<number> | number>(
-    initialDataPromise,
-  );
+  const [data, setData] = useState(initialDataPromise);
   const [isRefetching, startTransition] = useTransition();
 
   return (
@@ -71,7 +71,7 @@ export function DemoContextProvider({
         refetchDataAction: () => {
           startTransition(async () => {
             const newData = await refetchDataAction();
-            setDataPromise(newData);
+            setData(newData);
           });
         },
         isRefetching,
